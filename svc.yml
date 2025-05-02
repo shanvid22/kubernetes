@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: practicepod
+  namespace: demo-ns
+  labels: 
+   app: ubdt
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: practicesvc
+  namespace: demo-ns
+spec:
+  selector:
+    app: ubdt
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
