@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nodeportpod
+  #namespace: demo-ns
+  labels: 
+   app: ubdt
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeportsvc
+  #namespace: demo-ns
+spec:
+  selector:
+   app: ubdt
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
